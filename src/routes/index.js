@@ -13,6 +13,26 @@ const routesAdmin = [
     path: "/signin-admin",
     component: lazy(() => import("containers/AdminTemplate/SignInAd")),
   },
+  {
+    exact: false,
+    path: "/list-user",
+    component: lazy(() => import("containers/AdminTemplate/ListUser")),
+  },
+  {
+    exact: false,
+    path: "/edit-user/:_id",
+    component: lazy(() => import("containers/AdminTemplate/EditUserAdmin")),
+  },
+  {
+    exact: false,
+    path: "/add-user-admin",
+    component: lazy(() => import("containers/AdminTemplate/AddUserAdmin")),
+  },
+  {
+    exact: false,
+    path: "/dashboard",
+    component: lazy(() => import("containers/AdminTemplate/Dashboard")),
+  },
 ];
 const renderRoutesAdmin = () => {
   return routesAdmin.map((route, index) => {

@@ -1,11 +1,16 @@
 import React from "react";
-import 'containers/scss/Layouts/_footer.scss';
+import "./_footer.scss";
+
+import CloudIcon from "@mui/icons-material/Cloud";
+import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
+import InstagramIcon from "@mui/icons-material/Instagram";
+import TwitterIcon from "@mui/icons-material/Twitter";
 
 export default function Footer() {
   return (
     <footer>
       <div className="container">
-        <div className="row">
+        <div className="row ">
           <div className="col-3">
             <h4>Hỗ trợ</h4>
             <ul>
@@ -44,6 +49,32 @@ export default function Footer() {
               <li>Cơ hội nghề nghiệp</li>
               <li>Nhà đầu tư</li>
               <li>Airbnb Luxe</li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div className="row ">
+          <div className="col-6">
+            <CloudIcon />
+            2022 Airbnb
+          </div>
+          <div className="col-6 icon" >
+            <ul>
+              <li>
+                <a >
+                  <FacebookOutlinedIcon />
+                </a>
+              </li>
+              <li>
+                <a>
+                  <InstagramIcon />
+                </a>
+              </li>
+              <li>
+                <a >
+                  <TwitterIcon />
+                </a>
+              </li>
             </ul>
           </div>
         </div>

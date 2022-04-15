@@ -1,0 +1,5 @@
+@mixin styleButton($color){
+    &:hover{
+        color: $color;
+    }
+}

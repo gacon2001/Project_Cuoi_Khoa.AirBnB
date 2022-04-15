@@ -1,0 +1,27 @@
+footer {
+  ul li {
+    list-style: none;
+    margin-left: -40px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .icon {
+    ul {
+      display: flex;
+    }
+    li {
+      list-style: none;
+      margin-right: 40px;
+      a {
+        border-radius: 50px;
+        height: 40px;
+        width: 32px;
+        text-align: center;
+        &:hover {
+          background: purple;
+        }
+      }
+    }
+  }
+}

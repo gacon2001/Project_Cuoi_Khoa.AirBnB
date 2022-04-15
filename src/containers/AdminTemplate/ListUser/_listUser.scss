@@ -1,0 +1,13 @@
+@import 'scss/Helper/mixin';
+
+.button{
+    cursor: pointer;
+}
+
+.button-edit{
+    @include styleButton(green);
+}
+
+.button-delete{
+    @include styleButton(red);
+}

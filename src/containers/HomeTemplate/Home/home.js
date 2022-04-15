@@ -1,5 +1,6 @@
-import NavbarHome from 'containers/_component/NavbarHome'
+
 import React from 'react'
+import NavbarHome from '../_components/NavbarHome'
 import Footer from './Footer'
 
 export default function Home() {
