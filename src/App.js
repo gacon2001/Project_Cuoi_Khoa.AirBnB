@@ -1,9 +1,10 @@
 
 import React, { Suspense } from 'react';
-import {BrowserRouter,Switch, Route  } from "react-router-dom";
+import {BrowserRouter, Route } from "react-router-dom";
 import PageNotFound from './containers/PageNotFound';
 import './App.css';
 import { renderRoutesAdmin, renderRoutesHome } from 'routes';
+import { Switch } from 'react-router-dom';
 
 function App() {
   return (
