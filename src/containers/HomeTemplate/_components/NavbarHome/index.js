@@ -24,7 +24,7 @@ export default function NavbarHome() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item ">
-              <Link>Nơi ở</Link>
+              <Link to="/">Nơi ở</Link>
             </li>
             <li className="nav-item active" style={{marginLeft:"10px"}}>
               <Link to="/admin">Admin</Link>

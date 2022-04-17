@@ -63,7 +63,7 @@ export default function ListUser() {
     }
   }, [detailUser]);
   
-
+  
   const renderListUser = () => {
     return listUser?.map((user) => {
       return (
@@ -85,7 +85,7 @@ export default function ListUser() {
     });
   };
   return (
-    <Container>
+    <Container sx={{mt: 10}}>
       <Typography variant="h4">ListUser</Typography>
       <Link to="/add-user-admin" className="btn btn-success">
         Thêm Quản Trị

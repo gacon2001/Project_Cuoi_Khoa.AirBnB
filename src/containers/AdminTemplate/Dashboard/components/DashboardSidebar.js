@@ -32,10 +32,15 @@ const itemsLoggedIn = [
     icon: UsersIcon,
     title: "List Users",
   },
+  {
+    href: "/add-room",
+    icon: UsersIcon,
+    title: "Add New Rooms ",
+  },
 ];
 const itemsLoggedOut = [
   {
-    href: "/signin",
+    href: "/signin-admin",
     icon: LockIcon,
     title: "SignIn",
   },
@@ -109,7 +114,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
       <Divider />
       <Box sx={{ p: 2 }}>
         <List>
-          {/* {localStorage.getItem("Admin")
+          {localStorage.getItem("Admin")
             ? itemsLoggedIn.map((item) => (
                 <NavItem
                   href={item.href}
@@ -125,16 +130,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
                   title={item.title}
                   icon={item.icon}
                 />
-              ))} */}
-              {itemsLoggedIn.map((item)=>(
-               <NavItem
-                  href={item.href}
-                  key={item.title}
-                  title={item.title}
-                  icon={item.icon}
-                /> 
               ))}
-              
         </List>
       </Box>
       <Box sx={{ flexGrow: 1 }} />
@@ -145,7 +141,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           p: 2,
         }}
       >
-        {/* {localStorage.getItem("Admin") ? <Button
+        {localStorage.getItem("Admin") ? <Button
           color="success"
           variant="contained"
           sx={{ ml: 6 }}
@@ -155,18 +151,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           }}
         >
           Log Out
-        </Button> : ""} */}
-        <Button
-          color="success"
-          variant="contained"
-          sx={{ ml: 6 }}
-          onClick={() => {
-            localStorage.clear();
-            window.location.reload();
-          }}
-        >
-          Log Out
-        </Button>
+        </Button> : ""}
       </Box>
     </Box>
   );
@@ -219,3 +204,4 @@ DashboardSidebar.defaultProps = {
 };
 
 export default DashboardSidebar;
+

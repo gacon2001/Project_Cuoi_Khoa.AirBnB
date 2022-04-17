@@ -33,6 +33,11 @@ const routesAdmin = [
     path: "/dashboard",
     component: lazy(() => import("containers/AdminTemplate/Dashboard")),
   },
+  {
+    exact: false,
+    path: "/add-room",
+    component: lazy(() => import("containers/AdminTemplate/AddRoom")),
+  },
 ];
 const renderRoutesAdmin = () => {
   return routesAdmin.map((route, index) => {
@@ -50,7 +55,7 @@ const renderRoutesAdmin = () => {
 const routesHome = [
   {
     exact: true,
-    path: "",
+    path: "/",
     component: lazy(() => import("containers/HomeTemplate/Home/home.js")),
   },
   {
@@ -63,9 +68,25 @@ const routesHome = [
     path: "/signup-home",
     component: lazy(() => import("containers/HomeTemplate/SignUpHome")),
   },
+  {
+    exact: false,
+    path: "/detail-location/:_id",
+    component: lazy(() => import("containers/HomeTemplate/DetailLocation")),
+  },
+  {
+    exact: false,
+    path: "/list-rooms-for-rent-by-id/:_id",
+    component: lazy(() => import("containers/HomeTemplate/ListRoomsForRentByID")),
+  },
+  {
+    exact: false,
+    path: "/detail-room/:_id",
+    component: lazy(() => import("containers/HomeTemplate/DetailRoom")),
+  },
 ];
 const renderRoutesHome = () => {
   return routesHome.map((route, index) => {
+    
     return (
       <HomeTemplate
         key={index}

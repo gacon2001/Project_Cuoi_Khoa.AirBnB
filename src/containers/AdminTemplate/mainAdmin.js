@@ -1,10 +1,24 @@
-import React from 'react'
-import { Route } from 'react-router-dom'
+import React, { useState } from "react";
+import { Route, Redirect } from "react-router-dom";
+import DashboardNavbar from "./Dashboard/components/DashboardNavbar";
+import DashboardSidebar from "./Dashboard/components/DashboardSidebar";
+import SignInAd from "./SignInAd";
 
-export default function AdminTemplate({exact, path, component}) {
-  return (
-    <>
-    <Route exact={exact} path={path} component={component}/>
-    </>
-  )
+export default function AdminTemplate({ exact, path, component }) {
+  const [isMobileNavOpen, setMobileNavOpen] = useState(false);
+
+  if (localStorage.getItem("Admin")) { 
+    return (
+      <>
+        <DashboardNavbar onMobileNavOpen={() => setMobileNavOpen(true)} />
+        <DashboardSidebar
+          onMobileClose={() => setMobileNavOpen(false)}
+          openMobile={isMobileNavOpen}
+        />
+        <Route exact={exact} path={path} component={component} />
+      </>
+    );
+  }
+  // return <Redirect to="/signin-admin"/>
+  return <Route exact={false} path={"/signin-admin"} component={SignInAd} />
 }

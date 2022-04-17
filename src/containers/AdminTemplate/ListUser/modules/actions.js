@@ -38,6 +38,7 @@ export const actDeleteUserApi = (_id) => {
         .then((success)=>{
             dispatch(actDeleteUserSuccess(success.data));
             alert("Delete Successfully");
+            window.location.reload(true);
         })
         .catch((error)=>{
             // console.log(error);

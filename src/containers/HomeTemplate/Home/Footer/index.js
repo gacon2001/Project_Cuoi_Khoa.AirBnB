@@ -10,6 +10,7 @@ export default function Footer() {
   return (
     <footer>
       <div className="container">
+        <hr/>
         <div className="row ">
           <div className="col-3">
             <h4>Hỗ trợ</h4>

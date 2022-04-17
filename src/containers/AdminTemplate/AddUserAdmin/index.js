@@ -37,7 +37,7 @@ export default function AddUserAdmin() {
     dispatch(actAddUserApi(state, history));
   };
   return (
-    <Container maxWidth="sm" >
+    <Container maxWidth="sm" sx={{mt: 10}} >
       <form onSubmit={addUser}>
         <Box>
           <Typography variant="h4">AddUserAdmin</Typography>
