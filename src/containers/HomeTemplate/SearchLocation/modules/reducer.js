@@ -27,6 +27,26 @@ const fetchListLocationReducer = (state = initialState, action) => {
       return { ...state };
     }
 
+    case ActionType.DELETE_LOCATION_REQUEST:
+      state.loading = true;
+      state.error = null;
+      return { ...state };
+    case ActionType.DELETE_LOCATION_SUCCESS: {
+      let listLocation = { ...state.listLocation };
+      const index = state.listLocation.findIndex((location) => {
+        return location._id === action.payload;
+      });
+      if (index != -1) {
+        listLocation.splice(index, 1);
+        state.listLocation = listLocation;
+      }
+      return { ...state };
+    }
+    case ActionType.DELETE_LOCATION_FAILED:
+      state.loading = false;
+      state.error = action.payload;
+      return { ...state };
+
     default:
       return { ...state };
   }

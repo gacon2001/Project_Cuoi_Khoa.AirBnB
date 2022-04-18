@@ -33,3 +33,36 @@ const actFetchListLocationFailed = (error) => {
     payload: error,
   };
 };
+
+export const actDeleteLocationApi = (_id) => {
+  return (dispatch) => {
+      dispatch(actDeleteLocationRequest());
+      //8
+      api.delete(`locations/${_id}`)
+      .then((success)=>{
+          dispatch(actDeleteLocationSuccess(success.data));
+          alert("Delete Successfully");
+          window.location.reload(true);
+      })
+      .catch((error)=>{
+          dispatch(actDeleteLocationFailed(error));
+      })
+  }
+} 
+const actDeleteLocationRequest = ()=>{
+  return {
+      type: ActionType.DELETE_LOCATION_REQUEST
+  }
+}
+const actDeleteLocationSuccess = (data) => {
+return {
+  type: ActionType.DELETE_LOCATION_SUCCESS,
+  payload: data,
+}
+}
+const actDeleteLocationFailed = (error) => {
+  return{
+      type: ActionType.DELETE_LOCATION_FAILED,
+      payload: error,
+  }
+}

@@ -34,3 +34,35 @@ const actFetchListRoomsForRentByIDFailed = (error) => {
   };
 };
 
+
+export const actDeleteRoomApi = (_id) => {
+  return (dispatch) => {
+      dispatch(actDeleteRoomRequest());
+      api.delete(`rooms/${_id}`)
+      .then((success)=>{
+          dispatch(actDeleteRoomSuccess(success.data));
+          alert("Delete Successfully");
+          window.location.reload(true);
+      })
+      .catch((error)=>{
+          dispatch(actDeleteRoomFailed(error));
+      })
+  }
+} 
+const actDeleteRoomRequest = ()=>{
+  return {
+      type: ActionType.DELETE_ROOM_REQUEST
+  }
+}
+const actDeleteRoomSuccess = (data) => {
+return {
+  type: ActionType.DELETE_ROOM_SUCCESS,
+  payload: data,
+}
+}
+const actDeleteRoomFailed = (error) => {
+  return{
+      type: ActionType.DELETE_ROOM_FAILED,
+      payload: error,
+  }
+}

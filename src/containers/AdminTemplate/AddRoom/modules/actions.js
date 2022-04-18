@@ -10,9 +10,8 @@ export const actAddRoomApi = (data, history) => {
       .post("rooms", data)
       .then((success) => {
         dispatch(actAddRoomSuccess(success.data));
-        // alert("success");
         //!chuyển trang qua list room theo cái locationId mà mình chọn
-        history.push("/list-rooms-for-rent-by-id");
+        history.push(`/list-rooms/${data.locationId}`);
       })
       .catch((error) => {
         dispatch(actAddRoomFailed(error));

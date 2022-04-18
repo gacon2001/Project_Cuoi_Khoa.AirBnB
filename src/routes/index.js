@@ -38,6 +38,26 @@ const routesAdmin = [
     path: "/add-room",
     component: lazy(() => import("containers/AdminTemplate/AddRoom")),
   },
+  {
+    exact: false,
+    path: "/list-rooms/:_id",
+    component: lazy(() => import("containers/AdminTemplate/ListRoomById")),
+  },
+  {
+    exact: false,
+    path: "/manage-locations-and-rooms",
+    component: lazy(() => import("containers/AdminTemplate/ManageLocationAndRoom")),
+  },
+  {
+    exact: false,
+    path: "/add-location",
+    component: lazy(() => import("containers/AdminTemplate/AddLocation")),
+  },
+  {
+    exact: false,
+    path: "/edit-location/:_id",
+    component: lazy(() => import("containers/AdminTemplate/EditLocation")),
+  },
 ];
 const renderRoutesAdmin = () => {
   return routesAdmin.map((route, index) => {

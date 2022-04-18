@@ -27,6 +27,25 @@ const fetchListRoomsForRentByIDReducer = (state = initialState, action) => {
       return { ...state };
     }
 
+    case ActionType.DELETE_ROOM_REQUEST:
+      state.loading = true;
+      state.error = null;
+      return { ...state };
+    case ActionType.DELETE_ROOM_SUCCESS: {
+      let listRooms = { ...state.listRooms };
+      const index = state.listRooms.findIndex((user) => {
+        return user._id === action.payload;
+      });
+      if (index != -1) {
+        listRooms.splice(index, 1);
+        state.listRooms = listRooms;
+      }
+      return { ...state };
+    }
+    case ActionType.DELETE_ROOM_FAILED:
+      state.loading = false;
+      state.error = action.payload;
+      return { ...state };
 
     default:
       return { ...state };

@@ -37,6 +37,16 @@ const itemsLoggedIn = [
     icon: UsersIcon,
     title: "Add New Rooms ",
   },
+  {
+    href: "/list-rooms/:_id",
+    icon: UsersIcon,
+    title: "ListRoomsById",
+  },
+  {
+    href: "/manage-locations-and-rooms",
+    icon: UsersIcon,
+    title: "Mange Locations and Rooms",
+  },
 ];
 const itemsLoggedOut = [
   {
