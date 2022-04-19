@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Button, Container } from "@material-ui/core";
 import { Grid } from "@mui/material";
@@ -41,21 +41,31 @@ export default function DetailLocation() {
   const { _id } = useParams();
   const history = useHistory();
 
-  useEffect(() => {
-    if(detailLocation !== null){
-      dispatch(actFetchDetailLocationApi(_id)); 
-    }
-  }, []);
+  const [state, setState] = useState({
+    name: "",
+    province: "",
+    country: "",
+    valueate: "",
+    image: "",
+  });
 
+  useEffect(() => { 
+    dispatch(actFetchDetailLocationApi(_id));
+  }, []);
+  //phải dispatch actFetch trước mới set lại state mỗi khi detailLocation thay đổi
+  useEffect(() => {
+    if (detailLocation) {
+      setState(detailLocation);
+    }
+  }, [detailLocation]);
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  const renderDetailLocation = () => {
-    console.log(detailLocation);
-    return (
-      <Grid item xs={12} sm={6} md={4} key={detailLocation._id}>
+  return(
+    <Container maxWidth="md">
+      <Grid item xs={12} sm={6} md={4} key={state._id}>
         <Card sx={{ maxWidth: 345 }}>
           <CardHeader
             avatar={
@@ -68,31 +78,26 @@ export default function DetailLocation() {
                 <MoreVertIcon />
               </IconButton>
             }
-            title="Shrimp and Chorizo Paella"
-            subheader="September 14, 2016"
+            // title={state.name}
+            subheader={state.province}
           />
           <CardMedia
             component="img"
             height="194"
-            image={detailLocation.image}
-            alt={detailLocation.name}
+            image={state.image}
+            alt={state.name}
           />
           <CardContent>
             <Typography variant="body2">
-              {detailLocation.name}-{detailLocation.province}-
-              {detailLocation.country}
+              {state.name}-{state.province}-{state.country}
             </Typography>
-            <Typography variant="body2">
-              Valueate: {detailLocation.valueate}
-            </Typography>
+            <Typography variant="body2">Valueate: {state.valueate}</Typography>
           </CardContent>
 
-          <Box sx={{ textAlign: "center" }}>
+          <Box sx={{ textAlign: "center", mb: 3 }}>
             <Button
               onClick={() =>
-                history.push(
-                  `/list-rooms-for-rent-by-id/${detailLocation._id}`
-                )
+                history.push(`/list-rooms-for-rent-by-id/${state._id}`)
               }
               color="success"
               variant="contained"
@@ -101,7 +106,7 @@ export default function DetailLocation() {
             </Button>
           </Box>
 
-          <CardActions disableSpacing>
+          {/* <CardActions disableSpacing>
             <IconButton aria-label="add to favorites">
               <FavoriteIcon />
             </IconButton>
@@ -125,11 +130,10 @@ export default function DetailLocation() {
                 and set aside for 10 minutes.
               </Typography>
             </CardContent>
-          </Collapse>
+          </Collapse> */}
         </Card>
       </Grid>
-    );
-  };
-
-  return <>{renderDetailLocation()}</>;
+    </Container>
+    
+  );
 }

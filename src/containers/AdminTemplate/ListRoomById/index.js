@@ -40,6 +40,7 @@ export default function ListRoomsById() {
   );
   const dispatch = useDispatch();
   const {_id} = useParams();
+  const history = useHistory();
 
   useEffect(()=>{
     dispatch(actFetchListRoomsForRentByIDApi(
@@ -94,7 +95,7 @@ export default function ListRoomsById() {
 
             <Box sx={{ textAlign: "center" }}>
               <Button
-                onClick={() => dispatch()}
+                onClick={() => history.push(`/edit-room/${rooms._id}`)}
                 color="success"
                 variant="contained"
               >

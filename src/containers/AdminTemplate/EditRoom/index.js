@@ -1,4 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
+import { actFetchDetailRoomApi } from "containers/HomeTemplate/DetailRoom/modules/actions";
+import { actEditRoomApi } from "./modules/actions";
 import {
   Box,
   Container,
@@ -13,37 +18,46 @@ import {
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { actFetchListLocationApi } from "containers/HomeTemplate/SearchLocation/modules/actions";
-import { actAddRoomApi } from "./modules/actions";
 
-export default function AddRoom() {
+export default function EditRoom() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { _id } = useParams();
+  const detailRoom = useSelector((state) => {
+    return state.fetchDetailRoomsForRentReducer.detailRoom;
+  });
   const listLocation = useSelector(
     (state) => state.fetchListLocationReducer.listLocation
   );
-
   const [state, setState] = useState({
-    name: "Phòng Siêu Vip Pro",
-    guests: 2,
-    bedRoom: 2,
-    bath: 3,
-    description: "Khách Sạn này thật tuyệt vời",
-    price: 100000,
-    elevator: false,
+    name: "",
+    guests: "",
+    bedRoom: "",
+    bath: "",
+    description: "",
+    price: "",
+    elevator: true,
     hotTub: true,
     pool: true,
-    indoorFireplace: false,
+    indoorFireplace: true,
     dryer: true,
-    gym: false,
+    gym: true,
     kitchen: true,
     wifi: true,
     heating: true,
     cableTV: true,
-    locationId: "617af2e4da03f39db76165fe",
+    locationId: "",
   });
+
+  useEffect(() => {
+    if (detailRoom !== null) {
+      setState({
+        ...detailRoom,
+      });
+    }
+  }, [detailRoom]);
+
   const handleOnChange = (event) => {
     const { name, value } = event.target;
     setState({
@@ -59,32 +73,32 @@ export default function AddRoom() {
       [name]: checked,
     });
   };
-
-  const addRoom = (event) => {
-    event.preventDefault();
-    dispatch(actAddRoomApi(state, history));
-  };
-
   const renderListLocationById = () => {
-    return listLocation?.map((idLocation) => {
+    return listLocation?.map((location) => {
       return (
-        <MenuItem key={idLocation._id} value={idLocation._id}>
-          {idLocation.name}
+        <MenuItem  key={location._id} value={location._id}>
+          {location.name}-{location.province}-{location.country}
         </MenuItem>
       );
     });
   };
 
+  const updateRoom = (event) => {
+    event.preventDefault();
+    dispatch(actEditRoomApi(_id, state, history));
+  };
+
   useEffect(() => {
+    dispatch(actFetchDetailRoomApi(_id));
     dispatch(actFetchListLocationApi());
   }, []);
-
+  
   return (
     <Container maxWidth="sm" sx={{ mt: 10 }}>
-      <form onSubmit={addRoom}>
+      <form onSubmit={updateRoom}>
         <Box>
           <Typography color="textPrimary" variant="h4">
-            Add New Job Page
+            Edit Room
           </Typography>
         </Box>
         <TextField
@@ -272,7 +286,7 @@ export default function AddRoom() {
           </FormControl>
         </FormGroup>
         <Button color="success" variant="contained" type="submit">
-          Add Job
+          Update room
         </Button>
         <Button
           color="error"

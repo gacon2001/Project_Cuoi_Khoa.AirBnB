@@ -2,27 +2,28 @@ import * as ActionType from "./constants";
 
 const initialState = {
   loading: false,
-  detailRoom: null,
   error: null,
+  editRoom: "",
 };
 
-const fetchDetailRoomsForRentReducer = (state = initialState, action) => {
+const editRoomReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.FETCH_DETAIL_ROOM_REQUEST: {
+    case ActionType.EDIT_ROOM_REQUEST: {
       state.loading = true;
-      state.detailRoom = null;
+      state.editRoom = null;
       state.error = null;
       return { ...state };
     }
-    case ActionType.FETCH_DETAIL_ROOM_SUCCESS: {
+
+    case ActionType.EDIT_ROOM_SUCCESS: {
       state.loading = false;
-      state.detailRoom = action.payload;
+      state.editRoom = action.payload;
       state.error = null;
       return { ...state };
     }
-    case ActionType.FETCH_DETAIL_ROOM_FAILED: {
+    case ActionType.EDIT_ROOM_FAILED: {
       state.loading = false;
-      state.detailRoom = null;
+      state.editRoom = null;
       state.error = action.payload;
       return { ...state };
     }
@@ -32,4 +33,4 @@ const fetchDetailRoomsForRentReducer = (state = initialState, action) => {
   }
 };
 
-export default fetchDetailRoomsForRentReducer;
+export default editRoomReducer;

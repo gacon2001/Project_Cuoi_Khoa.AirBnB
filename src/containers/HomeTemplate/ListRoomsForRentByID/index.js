@@ -91,7 +91,7 @@ export default function ListRoomsForRentByID() {
               </Typography>
             </CardContent>
 
-            {/* <Box sx={{ textAlign: "center" }}>
+            <Box sx={{ textAlign: "center" }}>
               <Button
                 onClick={() => dispatch()}
                 color="warning"
@@ -99,7 +99,7 @@ export default function ListRoomsForRentByID() {
               >
                 Booking this room
               </Button>
-            </Box> */}
+            </Box>
 
             <CardActions disableSpacing>
               <IconButton aria-label="add to favorites">
@@ -133,19 +133,6 @@ export default function ListRoomsForRentByID() {
   return (
     <Box sx={{ mt: 8 }}>
       <Container maxWidth="md">
-        {/* <Navbarrooms />
-      <Box>
-        <Typography color="textPrimary" variant="h3">
-          Lists rooms Page
-        </Typography>
-      </Box>
-      <Link to="/add-rooms" className="btn btn-info">
-        Addrooms
-      </Link>
-
-      <Video />
-
-      <SearchroomsPage /> */}
         <Box>
           <Grid container spacing={2}>
             {renderListRoomsForRentByID()}

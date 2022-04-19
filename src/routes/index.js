@@ -58,6 +58,11 @@ const routesAdmin = [
     path: "/edit-location/:_id",
     component: lazy(() => import("containers/AdminTemplate/EditLocation")),
   },
+  {
+    exact: false,
+    path: "/edit-room/:_id",
+    component: lazy(() => import("containers/AdminTemplate/EditRoom")),
+  },
 ];
 const renderRoutesAdmin = () => {
   return routesAdmin.map((route, index) => {

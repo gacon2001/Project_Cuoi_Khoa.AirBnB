@@ -93,6 +93,7 @@ export default function AddUserAdmin() {
             id="demo-simple-select"
             label="Gender"
             name="gender"
+            value={state.gender}
             onChange={handleOnChange}
           >
             <MenuItem value={true}>Men</MenuItem>

@@ -7,6 +7,7 @@ import addUserReducer from "containers/AdminTemplate/AddUserAdmin/modules/reduce
 import fetchListLocationReducer from "containers/HomeTemplate/SearchLocation/modules/reducer";
 import fetchDetailLocationReducer from "containers/HomeTemplate/DetailLocation/modules/reducer";
 import fetchListRoomsForRentByIDReducer from "containers/HomeTemplate/ListRoomsForRentByID/modules/reducer";
+import fetchDetailRoomsForRentReducer from "containers/HomeTemplate/DetailRoom/modules/reducer";
 
 const rootReducer = combineReducers({
     signinAdminReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     fetchListLocationReducer,
     fetchDetailLocationReducer,
     fetchListRoomsForRentByIDReducer,
-
+    fetchDetailRoomsForRentReducer,
+    
 });
 export default rootReducer;

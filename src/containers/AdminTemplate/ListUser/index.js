@@ -85,7 +85,7 @@ export default function ListUser() {
     });
   };
   return (
-    <Container sx={{mt: 10}}>
+    <Container maxWidth="md" sx={{mt: 10}}>
       <Typography variant="h4">ListUser</Typography>
       <Link to="/add-user-admin" className="btn btn-success">
         Thêm Quản Trị
