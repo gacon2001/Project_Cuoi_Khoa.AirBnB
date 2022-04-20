@@ -59,9 +59,6 @@ export default function DetailLocation() {
     }
   }, [detailLocation]);
   const [expanded, setExpanded] = React.useState(false);
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   return(
     <Container maxWidth="md">
@@ -105,32 +102,6 @@ export default function DetailLocation() {
               List Rooms For Rent
             </Button>
           </Box>
-
-          {/* <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="share">
-              <ShareIcon />
-            </IconButton>
-            <ExpandMore
-              expand={expanded}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-            >
-              <ExpandMoreIcon />
-            </ExpandMore>
-          </CardActions>
-          <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <CardContent>
-              <Typography paragraph>Method:</Typography>
-              <Typography paragraph>
-                Heat 1/2 cup of the broth in a pot until simmering, add saffron
-                and set aside for 10 minutes.
-              </Typography>
-            </CardContent>
-          </Collapse> */}
         </Card>
       </Grid>
     </Container>

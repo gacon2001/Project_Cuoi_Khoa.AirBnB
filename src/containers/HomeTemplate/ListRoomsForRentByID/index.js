@@ -91,16 +91,6 @@ export default function ListRoomsForRentByID() {
               </Typography>
             </CardContent>
 
-            <Box sx={{ textAlign: "center" }}>
-              <Button
-                onClick={() => dispatch()}
-                color="warning"
-                variant="contained"
-              >
-                Booking this room
-              </Button>
-            </Box>
-
             <CardActions disableSpacing>
               <IconButton aria-label="add to favorites">
                 <FavoriteIcon />
