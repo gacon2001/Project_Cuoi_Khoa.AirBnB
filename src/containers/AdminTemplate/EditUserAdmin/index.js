@@ -54,7 +54,7 @@ export default function EditUserAdmin() {
     dispatch(actFetchDetailUserApi(_id));
   }, []);
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="sm" sx={{mt: 10}}>
       <form onSubmit={updateUser}>
         <Box>
           <Typography variant="h4">EditUserAdmin</Typography>

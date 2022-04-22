@@ -4,12 +4,11 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { Container } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { actFetchListLocationApi } from "./modules/actions";
-import YoutubeSearchedForIcon from "@mui/icons-material/YoutubeSearchedFor";
 import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
+import SearchIcon from '@mui/icons-material/Search';
+import './_searchLocation.scss'
 
 export default function SearchLocation() {
   const listLocation = useSelector(
@@ -38,7 +37,7 @@ export default function SearchLocation() {
   };
 
   return (
-    <Container maxWidth="md">
+    <div className="container search">
       <Box
         sx={{
           minWidth: 120,
@@ -48,7 +47,7 @@ export default function SearchLocation() {
         }}
       >
         <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">
+          <InputLabel id="demo-simple-select-label" >
             Bạn muốn đi đâu?
           </InputLabel>
           <Select
@@ -58,18 +57,19 @@ export default function SearchLocation() {
             value={locationID}
             // mình phải có hàm onchange để set lại state rồi cái value này mình lấy từ cái state đó đó
             onChange={handleOnChange}
+            sx={{borderRadius: "50px"}}
           >
             {renderListLocation()}
           </Select>
         </FormControl>
-        <Link
-          className="btn btn-outline-success my-2 my-sm-0"
-          to={`/detail-location/${locationID}`}
+        <div className="searchIcon" >
+           <SearchIcon onClick={()=> history.push(`/detail-location/${locationID}`)} 
         >
           Search
-        </Link>
-        {/* <YoutubeSearchedForIcon /> */}
+        </SearchIcon>
+        </div>
+       
       </Box>
-    </Container>
+    </div>
   );
 }

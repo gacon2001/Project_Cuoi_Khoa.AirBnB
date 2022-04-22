@@ -1,0 +1,30 @@
+.ukraine {
+  background-color: black;
+  margin-top: 20px;
+  padding-bottom: 220px;
+  padding-top: 20px;
+  position: relative;
+  .ukraine-content {
+    border-radius: 15px;
+    text-align: center;
+    background-color: palevioletred;
+    h2 {
+      margin: 30px;
+      padding: 70px;
+    }
+  }
+}
+
+.camping-container{
+  background-image: url("https://media.istockphoto.com/photos/camping-tent-in-a-camping-in-a-forest-by-the-river-picture-id911995140?k=20&m=911995140&s=612x612&w=0&h=_UBEvgxDhJw8Mj_xlNR0szedE0UKSKik_MIHkxEkKBQ=");
+  background-position: center;
+  background-size: cover;
+  border-radius: 30px;
+  width: 77%;
+  height: 77%;
+  text-align: center;
+
+  position: absolute;
+  top: 600px;
+
+}

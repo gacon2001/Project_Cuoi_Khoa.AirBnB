@@ -83,16 +83,16 @@ const routesHome = [
     path: "/",
     component: lazy(() => import("containers/HomeTemplate/Home/home.js")),
   },
-  {
-    exact: false,
-    path: "/signin-home",
-    component: lazy(() => import("containers/HomeTemplate/SignInHome")),
-  },
-  {
-    exact: false,
-    path: "/signup-home",
-    component: lazy(() => import("containers/HomeTemplate/SignUpHome")),
-  },
+  // {
+  //   exact: false,
+  //   path: "/signin-home",
+  //   component: lazy(() => import("containers/HomeTemplate/SignInHome")),
+  // },
+  // {
+  //   exact: false,
+  //   path: "/signup-home",
+  //   component: lazy(() => import("containers/HomeTemplate/SignUpHome")),
+  // },
   {
     exact: false,
     path: "/detail-location/:_id",

@@ -11,7 +11,7 @@ export default function Footer() {
     <footer>
       <div className="container">
         <hr/>
-        <div className="row ">
+        <div className="row list">
           <div className="col-3">
             <h4>Hỗ trợ</h4>
             <ul>
