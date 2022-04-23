@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { actSignInApi } from "./modules/action";
-// import "../style_base.css"
+import '../_auth.scss'
 
 export default function SignInHome(props) {
   const dispatch = useDispatch();
@@ -56,7 +56,7 @@ export default function SignInHome(props) {
                 />
               </div>
               <div className="form-group text-center">
-                <button type="submit" role="button" className="btn btn-primary">
+                <button type="submit" role="button" >
                   Sign in
                 </button>
               </div>

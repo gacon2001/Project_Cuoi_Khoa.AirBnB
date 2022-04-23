@@ -1,18 +1,23 @@
 .searchIcon {
-  border-radius: 50px;
-  background-color: palevioletred;
-  color: black;
+  // border-radius: 50px;
+  // background-color: rgb(255, 56, 92);
+  
+  color: rgb(255, 56, 92);
   height: 50px;
   width: 50px;
   line-height: 50px;
   text-align: center;
   &:hover {
-    background-color: black;
-    color: palevioletred;
+    // background-color: black;
+    color: white;
   }
 }
 
 .search{
-  // background-color: white;
-  margin-top: 20px;
+  background-color: black;
+  // margin-top: 20px;
+  .input{
+    background-color: white;
+    border-radius: 50px;
+  }
 }

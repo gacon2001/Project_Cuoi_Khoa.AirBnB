@@ -9,6 +9,9 @@ import "jquery/dist/jquery.min.js";
 import "popper.js/dist/umd/popper.min.js";
 import "bootstrap/dist/js/bootstrap.bundle.js";
 
+// import 'slick-carousel/slick/slick.css'
+// import 'slick-carousel/slick/slick-theme.css';
+
 import { applyMiddleware, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";

@@ -1,7 +1,67 @@
 import React, { Fragment,useState } from 'react';
 import { actSignUp } from "./modules/action";
 import { useDispatch } from "react-redux";
-// import "../style_base.css"
+import '../_auth.scss';
+
+const checkEmpty = (value) => {
+  let error;
+  //skill: [] -> nên phải check length
+  if (!value || value.length === 0) {
+    // console.log("password in here");
+    error = "Không được để trống";
+  } else if (typeof value === "string" && value.trim() != "") {
+    error = "";
+  }
+  return error;
+};
+const checkName = (value) => {
+  let error;
+  var pattern = /(?=([a-z][A-Z]{1,32}$|[A-Z][a-z]{1,32}$))/;
+  var reg = new RegExp(pattern);
+  if (reg.test(value)) {
+    // console.log(value.match(pattern));
+    error = "";
+  } else {
+    error =
+      "Tên phải là kiểu chữ bao gồm hoa và thường, viết hoa chữ cái đầu tiên và phải viết liền, từ 1 đến 32 kí tự";
+  }
+  return error;
+};
+const checkEmail = (value) => {
+  let error;
+  var pattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  var reg = new RegExp(pattern);
+  if (reg.test(value)) {
+    // console.log(value.match(reg));
+    error = "";
+  } else {
+    error = "Email phải đúng định dạng a@gmail.com";
+  }
+  return error;
+};
+const checkPhoneNumber = (value) => {
+  let error;
+  var pattern = /^\d{10}$/;
+  var reg = new RegExp(pattern);
+  if (reg.test(value)) {
+    error = "";
+  } else {
+    error = "Phone phải đủ đúng 10 số";
+  }
+  return error;
+};
+const checkPassword = (value) => {
+  let error;
+  var pattern = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+  var reg = new RegExp(pattern);
+  if (reg.test(value)) {
+    error = "";
+  } else {
+    error =
+      "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters";
+  }
+  return error;
+};
 
 export default function SignUpHome(props) {
   const dispatch = useDispatch();
@@ -54,6 +114,11 @@ export default function SignUpHome(props) {
                     name="name"
                     onChange={handleOnChange}
                   />
+                  <span>{(value)=> {
+                    const errors= {};
+                    const nameErrors = checkEmpty(value.name) || checkName(value.name);
+                    if (nameErrors.length > 0) errors.name = nameErrors;
+                  }}</span>
                 </div>
                 <div className="form-group">
                   <label>Email</label>
@@ -134,7 +199,7 @@ export default function SignUpHome(props) {
                   />
                 </div>
                 <div className="form-group text-center">
-                  <button type="submit" className="btn btn-primary">
+                  <button type="submit" >
                    Sign up
                   </button>
                 </div>

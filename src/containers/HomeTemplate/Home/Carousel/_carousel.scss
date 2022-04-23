@@ -1,13 +1,13 @@
 .ukraine {
   background-color: black;
-  margin-top: 20px;
+  // margin-top: 20px;
   padding-bottom: 220px;
   padding-top: 20px;
-  position: relative;
+  // position: relative;
   .ukraine-content {
     border-radius: 15px;
     text-align: center;
-    background-color: palevioletred;
+    background-color: rgb(255, 56, 92);
     h2 {
       margin: 30px;
       padding: 70px;
@@ -15,16 +15,32 @@
   }
 }
 
-.camping-container{
-  background-image: url("https://media.istockphoto.com/photos/camping-tent-in-a-camping-in-a-forest-by-the-river-picture-id911995140?k=20&m=911995140&s=612x612&w=0&h=_UBEvgxDhJw8Mj_xlNR0szedE0UKSKik_MIHkxEkKBQ=");
-  background-position: center;
+.camping{
+  background-image: url("https://a0.muscache.com/im/pictures/226ee7ed-8eb8-4e61-8366-3177dce0d3f8.jpg?im_q=highq&im_w=720");
+  background-position: inherit;
   background-size: cover;
   border-radius: 30px;
   width: 77%;
   height: 77%;
   text-align: center;
 
-  position: absolute;
-  top: 600px;
+  // position: absolute;
+  // top: 600px;
 
+}
+
+.inspiration{
+  .inspiration-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  img{
+    width: 100%;
+    height: 100%;
+  }
+  //sao card ko cách nhau??
+  .card{
+    margin: 10px 10px 10px 0;
+  }
 }

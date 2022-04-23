@@ -6,12 +6,18 @@ export const actSignInApi = (user) => {
     api
       .post("auth/login", user)
       .then((success) => {
+        if (success.data.user.type !== "CLIENT"){
+          return Promise.reject({
+            data: "ONLY FOR USERS TO ACCESS"
+          })
+        }
         localStorage.setItem("Admin", JSON.stringify(success.data));
         dispatch(actSigninSuccess(success.data));
         alert("Đăng nhập thành công");
         // Close Modal
         if (document.getElementById("signInModal")) {
           document.getElementById("signInModal").click();
+          window.location.reload(true);
         }
       })
       .catch((error) => {

@@ -1,8 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
-import SignUpHome from "containers/HomeTemplate/SignUpHome";
-import SignInHome from "containers/HomeTemplate/SignInHome";
+import SignUpHome from "containers/HomeTemplate/Auth/SignUpHome";
+import SignInHome from "containers/HomeTemplate/Auth/SignInHome";
 import HamburgerIcon from "../Icons/HamburgerIcon";
 import PersonIcon from "../Icons/PersonIcon";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -18,7 +18,8 @@ export default function NavbarHome() {
     localStorage.clear();
   };
   const handleLogin = () => {
-    if (localStorage.getItem("User")) {
+    //!check đăng nhập vào với 
+    if (localStorage.getItem("Admin")) {
       return (
         <div>
           <div className="d-flex justify-content-between align-items-center row">
@@ -76,7 +77,7 @@ export default function NavbarHome() {
           <span
               className="pr-3 responsive-992px"
               style={{
-                display: `${localStorage.getItem("User") ? "none" : "block"}`,
+                display: `${localStorage.getItem("Admin") ? "none" : "block"}`,
               }}
             >
               Become a Host <LanguageIcon />

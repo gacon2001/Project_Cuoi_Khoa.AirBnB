@@ -7,8 +7,8 @@ import Select from "@mui/material/Select";
 import { useDispatch, useSelector } from "react-redux";
 import { actFetchListLocationApi } from "./modules/actions";
 import { useHistory } from "react-router-dom";
-import SearchIcon from '@mui/icons-material/Search';
-import './_searchLocation.scss'
+import SearchIcon from "@mui/icons-material/Search";
+import "./_searchLocation.scss";
 
 export default function SearchLocation() {
   const listLocation = useSelector(
@@ -20,7 +20,7 @@ export default function SearchLocation() {
 
   const handleOnChange = (event) => {
     setLocationID(event.target.value);
-  }
+  };
 
   useEffect(() => {
     dispatch(actFetchListLocationApi());
@@ -37,39 +37,41 @@ export default function SearchLocation() {
   };
 
   return (
-    <div className="container search">
-      <Box
-        sx={{
-          minWidth: 120,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label" >
-            Bạn muốn đi đâu?
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            label="Bạn muốn đi đâu?"
-            value={locationID}
-            // mình phải có hàm onchange để set lại state rồi cái value này mình lấy từ cái state đó đó
-            onChange={handleOnChange}
-            sx={{borderRadius: "50px"}}
-          >
-            {renderListLocation()}
-          </Select>
-        </FormControl>
-        <div className="searchIcon" >
-           <SearchIcon onClick={()=> history.push(`/detail-location/${locationID}`)} 
+    <div className="search">
+      <div className="container">
+        <Box
+        className="search-container"
+          sx={{
+            minWidth: 120,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
         >
-          Search
-        </SearchIcon>
-        </div>
-       
-      </Box>
+          <FormControl fullWidth className="input">
+            <InputLabel  id="demo-simple-select-label">
+              Bạn muốn đi đâu?
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              // label="Bạn muốn đi đâu?"
+              value={locationID}
+              // mình phải có hàm onchange để set lại state rồi cái value này mình lấy từ cái state đó đó
+              onChange={handleOnChange}
+            >
+              {renderListLocation()}
+            </Select>
+          </FormControl>
+          <div className="searchIcon">
+            <SearchIcon
+              onClick={() => history.push(`/detail-location/${locationID}`)}
+            >
+              Search
+            </SearchIcon>
+          </div>
+        </Box>
+      </div>
     </div>
   );
 }

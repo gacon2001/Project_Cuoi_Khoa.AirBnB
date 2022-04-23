@@ -47,6 +47,13 @@
     padding: 0 !important;
 }
 
+div.dropdown-menu.dropdown-menu--modify {
+    top: 120%;
+    right: 0 !important;
+    left: auto;
+    box-shadow: 0 0 15px 3px #cacccd;
+    border-radius: 0.5rem;
+  }
 
 @media screen and (max-width:1200px)  {
     .my-responsive{
