@@ -1,7 +1,7 @@
 
 import React from 'react'
 import SearchLocation from '../SearchLocation'
-import NavbarHome from '../_components/NavbarHome'
+import NavbarHome from './NavbarHome'
 import Carousel from './Carousel';
 import Footer from './Footer';
 import './_home.scss'

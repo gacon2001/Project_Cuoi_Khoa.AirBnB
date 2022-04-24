@@ -9,3 +9,8 @@ export const FETCH_LIST_EVALUATE_FAILED = "@fetchDetailRoomsForRentReducer/FETCH
 export const BOOKING_ROOM_REQUEST  = "@fetchDetailRoomsForRentReducer/BOOKING_ROOM_REQUEST";
 export const BOOKING_ROOM_SUCCESS = "@fetchDetailRoomsForRentReducer/BOOKING_ROOM_SUCCESS";
 export const BOOKING_ROOM_FAILED = "@fetchDetailRoomsForRentReducer/BOOKING_ROOM_FAILED";
+
+
+export const DELETE_EVALUATE_REQUEST  = "@fetchDetailRoomsForRentReducer/DELETE_EVALUATE_REQUEST";
+export const DELETE_EVALUATE_SUCCESS = "@fetchDetailRoomsForRentReducer/DELETE_EVALUATE_SUCCESS";
+export const DELETE_EVALUATE_FAILED = "@fetchDetailRoomsForRentReducer/DELETE_EVALUATE_FAILED";

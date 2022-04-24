@@ -6,6 +6,7 @@ const initialState = {
   error: null,
   listEvaluate: [],
   bookingRoom: "",
+  imageRoom: "",
 };
 
 const fetchDetailRoomsForRentReducer = (state = initialState, action) => {
@@ -66,6 +67,27 @@ const fetchDetailRoomsForRentReducer = (state = initialState, action) => {
       state.error = action.payload;
       return { ...state };
     }
+
+    case ActionType.DELETE_EVALUATE_REQUEST: {
+      state.loading= true;
+      state.error = null;
+      return {...state};
+    }
+    case ActionType.DELETE_EVALUATE_SUCCESS: {
+      let listEvaluate = {...state.listEvaluate};
+      const index = state.listEvaluate.findIndex((evaluate)=>{
+        return evaluate._id === action.payload;
+      });
+      if(index != -1){
+        listEvaluate.splice(index, 1);
+        state.listEvaluate =  listEvaluate;
+      }
+      return {...state};
+    }
+    case ActionType.BOOKING_ROOM_FAILED:
+      state.loading= false;
+      state.error = action.payload;
+      return {...state};
     default:
       return { ...state };
   }

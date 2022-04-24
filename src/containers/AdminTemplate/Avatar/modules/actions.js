@@ -5,8 +5,9 @@ export const actUploadAvatarApi = (avatar) => {
   return (dispatch) => {
     dispatch(actUploadAvatarRequest());
     var formData = new FormData();
-    formData.append("avatar", avatar);//(name: key postman, value: tham số mà mình nhận gtri truyền vô)
+    formData.append("avatar", avatar);//(name: key postman, value: tham số mà mình nhận gtri truyền vô) //ko nhận jpeg, nhận jpg
     api
+    //6
       .post("users/upload-avatar", formData)
       .then((success) => {
         const admin = JSON.parse(localStorage.getItem("Admin"));

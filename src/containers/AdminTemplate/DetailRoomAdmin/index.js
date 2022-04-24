@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
+import "containers/AdminTemplate/ListUser/_listUser.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
   actFetchDetailRoomApi,
   actBookingRoomApi,
   actFetchListEvaluateApi,
-} from "./modules/actions";
+} from "containers/HomeTemplate/DetailRoom/modules/actions";
+import { actUploadImageRoomApi } from "./modules/actions";
 import { useParams } from "react-router-dom";
-import "./_detailRoom.scss";
+import "containers/HomeTemplate/DetailRoom/_detailRoom.scss";
 import CellWifiIcon from "@mui/icons-material/CellWifi";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import ElevatorOutlinedIcon from "@mui/icons-material/ElevatorOutlined";
@@ -19,20 +21,36 @@ import SoupKitchenOutlinedIcon from "@mui/icons-material/SoupKitchenOutlined";
 import FitnessCenterOutlinedIcon from "@mui/icons-material/FitnessCenterOutlined";
 import { Button, TextField, Box } from "@mui/material";
 import { Typography } from "@mui/material";
+import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
+import DeleteSweepOutlinedIcon from "@mui/icons-material/DeleteSweepOutlined";
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
+import { useHistory } from "react-router-dom";
+import { actDeleteEvaluateApi } from "containers/HomeTemplate/DetailRoom/modules/actions";
 
-export default function DetailRoom() {
+export default function DetailRoomAdmin() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const { _id } = useParams();
   const detailRoom = useSelector(
     (state) => state.fetchDetailRoomsForRentReducer.detailRoom
   );
-  //!=> Vì là ở UI người dùng khách hàng sử dụng, mọi thông tin đều là tĩnh, ko đc cập nhật hay j nên lấy detailRoom trực tiếp chấm . tới các thuộc tính của nó => Chỉ setState khi nào cần cập nhật lại một cái gì đó mà thôi (detailRoom set ở reducer ban đầu là null nên chấm . tới các thuộc tính phải có dấu ? phía trước dấm chấm .)
 
   const listEvaluate = useSelector(
     (state) => state.fetchDetailRoomsForRentReducer.listEvaluate
   );
+
+  //!upload img cho room
+  const [imgRoom, setImgRoom] = useState({
+    room: "",
+  });
+  const handleOnChangeImageRoom = (event) => {
+    const { name, value } = event.target;
+    setImgRoom({
+      ...imgRoom,
+      [name]: value,
+    });
+  };
 
   const [booking, setBooking] = useState({
     checkIn: "",
@@ -57,17 +75,38 @@ export default function DetailRoom() {
   useEffect(() => {
     dispatch(actFetchDetailRoomApi(_id));
     dispatch(actFetchListEvaluateApi(_id));
+    dispatch(actUploadImageRoomApi(_id, imgRoom));
   }, []);
 
   const renderListEvaluate = () => {
     return listEvaluate?.map((list) => {
       return (
-        <div className="evaluate" key={list._id}>
-          {/* nếu có avatar thì hiện avatar -> ko thì hiện hình ảnh mặc định này??? */}
-          <img src={list.userId?.avatar == list.userId?.avatar ? list.userId?.avatar : "https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg"} />
+        <div className="evaluate-button">
+          <div className="list-evaluate" key={list._id}>
+            {/* nếu có avatar thì hiện avatar -> ko thì hiện hình ảnh mặc định này??? */}
+            <img
+              src={
+                list.userId?.avatar == list.userId?.avatar ? (
+                  list.userId?.avatar
+                ) : (
+                  <img src="https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg" />
+                )
+              }
+            />
+            <div>
+              <p>{list.userId?.name}</p>
+              <p>{list.content}</p>
+            </div>
+          </div>
           <div>
-            <p>{list.userId?.name}</p>
-            <p>{list.content}</p>
+            <BorderColorOutlinedIcon
+              className="button button-edit"
+              onClick={() => history.push(`edit-evaluate/${list._id}`)}
+            />
+            <DeleteSweepOutlinedIcon
+              className="button-delete"
+              onClick={() => dispatch(actDeleteEvaluateApi(list._id))}
+            />
           </div>
         </div>
       );
@@ -75,11 +114,9 @@ export default function DetailRoom() {
   };
 
   return (
-    <div className="container">
+    <div className="container" style={{ marginTop: 70 }}>
       <h1>{detailRoom?.name}</h1>
       <div className="name">
-        {/* listEvaluate là [] => .length là có thể count đc số evaluate  */}
-
         <p>
           {listEvaluate.length} evaluate
           <span className="p-location">
@@ -90,7 +127,16 @@ export default function DetailRoom() {
 
         <hr />
       </div>
-      <img src={detailRoom?.image} style={{ width: "100%" , cursor: "pointer"}}  />
+
+      {/* upload image room???? */}
+      <img
+        src={detailRoom?.image}
+        style={{ width: "100%", cursor: "pointer" }}
+        type="file"
+        onClick={handleOnChangeImageRoom}
+        value={imgRoom.room}
+        name="room"
+      />
       <hr />
 
       <div className="container infor-room">
@@ -247,29 +293,38 @@ export default function DetailRoom() {
 
       {/* evaluate */}
       <div>
-        <Rating
-          name="text-feedback"
-          value={listEvaluate.length}
-          readOnly
-          precision={0.5}
-          emptyIcon={
-            <StarIcon
-              style={{ opacity: 0.55, color: "yellowgreen" }}
-              fontSize="inherit"
-            />
-          }
-        />
+        <div className="evaluate">
+          <Rating
+            name="text-feedback"
+            value={listEvaluate.length}
+            readOnly
+            precision={0.5}
+            emptyIcon={
+              <StarIcon
+                style={{ opacity: 0.55, color: "yellowgreen" }}
+                fontSize="inherit"
+              />
+            }
+          />
+          <Button
+            color="success"
+            variant="contained"
+            onClick={() => history.push(`/add-evaluate/${_id}`)}
+          >
+            Add Evaluate
+          </Button>
+        </div>
         {renderListEvaluate()}
       </div>
 
-      <hr/>
+      <hr />
       <div className="img-location">
         <h3>Nơi bạn sẽ đến</h3>
         <span className="p-location">
-            {detailRoom?.locationId.name},{detailRoom?.locationId.province},
-            {detailRoom?.locationId.country}
-          </span>
-        <img src={detailRoom?.locationId.image}/>
+          {detailRoom?.locationId.name},{detailRoom?.locationId.province},
+          {detailRoom?.locationId.country}
+        </span>
+        <img src={detailRoom?.locationId.image} />
       </div>
     </div>
   );

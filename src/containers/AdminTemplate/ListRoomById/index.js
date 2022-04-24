@@ -80,7 +80,7 @@ export default function ListRoomsById() {
               alt={rooms.name}
             />
             <CardContent>
-              <Link to={`/detail-room/${rooms._id}`} >{rooms.name}</Link>
+              <Link to={`/detail-room-admin/${rooms._id}`} >{rooms.name}</Link>
               <Typography variant="body2">Price: ${rooms.price}/day</Typography>
               <Typography variant="body2">
                 The number of guests: {rooms.guests}

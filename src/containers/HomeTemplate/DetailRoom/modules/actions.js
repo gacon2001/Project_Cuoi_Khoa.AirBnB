@@ -101,3 +101,36 @@ const actBookingRoomFailed = (error) => {
     payload: error,
   };
 };
+
+
+export const actDeleteEvaluateApi = (_id) => {
+  return (dispatch) => {
+      dispatch(actDeleteEvaluateRequest());
+      api.delete(`reviews/${_id}`)
+      .then((success)=>{
+          dispatch(actDeleteEvaluateSuccess(success.data));
+          alert("Delete Successfully");
+          window.location.reload(true);
+      })
+      .catch((error)=>{
+          dispatch(actDeleteEvaluateFailed(error));
+      })
+  }
+} 
+const actDeleteEvaluateRequest = ()=>{
+  return {
+      type: ActionType.DELETE_EVALUATE_REQUEST
+  }
+}
+const actDeleteEvaluateSuccess = (data) => {
+return {
+  type: ActionType.DELETE_EVALUATE_SUCCESS,
+  payload: data,
+}
+}
+const actDeleteEvaluateFailed = (error) => {
+  return{
+      type: ActionType.DELETE_EVALUATE_FAILED,
+      payload: error,
+  }
+}

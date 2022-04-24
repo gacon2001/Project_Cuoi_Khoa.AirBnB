@@ -52,7 +52,7 @@ ul li {
   }
 }
 
-.evaluate{
+.list-evaluate{
   display: flex;
   flex-direction: row;
   img{
@@ -70,4 +70,16 @@ ul li {
     width: 100%;
     height: 100%;
   }
+}
+
+.evaluate{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.evaluate-button{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

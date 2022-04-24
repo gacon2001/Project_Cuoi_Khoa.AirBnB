@@ -15,6 +15,11 @@ const routesAdmin = [
   },
   {
     exact: false,
+    path: "/detail-admin-signin/:_id",
+    component: lazy(() => import("containers/AdminTemplate/DetailAdminSignin")),
+  },
+  {
+    exact: false,
     path: "/list-user",
     component: lazy(() => import("containers/AdminTemplate/ListUser")),
   },
@@ -62,6 +67,16 @@ const routesAdmin = [
     exact: false,
     path: "/edit-room/:_id",
     component: lazy(() => import("containers/AdminTemplate/EditRoom")),
+  },
+  {
+    exact: false,
+    path: "/detail-room-admin/:_id",
+    component: lazy(() => import("containers/AdminTemplate/DetailRoomAdmin")),
+  },
+  {
+    exact: false,
+    path: "/add-evaluate/:_id",
+    component: lazy(() => import("containers/AdminTemplate/AddEvaluate")),
   },
 ];
 const renderRoutesAdmin = () => {

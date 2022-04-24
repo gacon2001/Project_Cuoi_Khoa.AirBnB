@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import SignUpHome from "containers/HomeTemplate/Auth/SignUpHome";
@@ -9,17 +9,31 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import LanguageIcon from "@mui/icons-material/Language";
 import Logo from "../Icons/Logo";
 import "./navbarHome.css";
-// import "./../../style_base.css"
+import { useDispatch } from "react-redux";
+import { actUploadAvatarApi } from "containers/AdminTemplate/Avatar/modules/actions";
 
 export default function NavbarHome() {
+  const dispatch = useDispatch();
   const history = useHistory();
+  const [avatar, setAvatar] = useState({
+    avatar: "",
+  });
+  const handleOnChange = (event)=>{
+    const {files} = event.target;
+    dispatch(actUploadAvatarApi(files[0]));
+    setAvatar({
+      [files]: files[0],
+    })
+  }
+
   const user = JSON.parse(localStorage.getItem("Admin"));
   const handleLogout = () => {
     localStorage.clear();
   };
   const handleLogin = () => {
-    //!check đăng nhập vào với 
+    //!check đăng nhập vào với type là CLIENT mới đc đăng nhập
     if (localStorage.getItem("Admin")) {
+      // if (user.user.type === "CLIENT") {
       return (
         <div>
           <div className="d-flex justify-content-between align-items-center row">
@@ -46,7 +60,9 @@ export default function NavbarHome() {
         >
           <div className="d-flex justify-content-between align-items-center">
             <HamburgerIcon></HamburgerIcon>
-            <PersonIcon></PersonIcon>
+
+            {/*  */}
+            <PersonIcon type="file" onClick={handleOnChange}></PersonIcon>
           </div>
         </button>
       );

@@ -63,8 +63,14 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
   const imgref = useRef(null);
   const dispatch = useDispatch();
 
-  const [user, setUser] = useState({
-    name: "",
+
+  // todo: cụm user chi tiết ng dùng ko có avatar??? -> chia ra 2 useState
+  // const [user, setUser] = useState({
+  //   name: "",
+  //   avatar: "",
+  // });
+  const [user, setUser] = useState({ name:""})
+  const [avatar, setAvatar] = useState({
     avatar: "",
   });
 
@@ -100,25 +106,25 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           p: 2,
         }}
       >
-        {user && user.avatar && (
+        {user && avatar.avatar && (
           <Avatar
-            // component="img"
-            src={user.avatar}
+            // src={user.avatar}
+            src={avatar.avatar}
             sx={{
               cursor: "pointer",
               width: 64,
               height: 64,
             }}
-            //ban đầu current là null
             onClick={() => {
               imgref.current?.click();
             }}
           ></Avatar>
         )}
+        {/* bỏ hidden, upload đc img nhưng logout bị mất */}
         <input ref={imgref} type="file" hidden onChange={handleOnChange} />
 
         <Typography color="textPrimary" variant="h5">
-          {user && <Link to={`/profile/${user._id}`}>{user.name}</Link>}
+          {user && <Link to={`/detail-admin-signin/${user._id}`}>{user.name}</Link>}
         </Typography>
       </Box>
       <Divider />
@@ -166,6 +172,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
     </Box>
   );
 
+  // console.log(user);
   return (
     <>
       <Hidden lgUp>

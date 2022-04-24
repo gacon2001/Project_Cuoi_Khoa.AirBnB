@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./_carousel.scss";
-import { Link } from '@mui/material';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -21,6 +20,7 @@ export default function Carousel() {
     slidesToScroll: 1,
     infinite: false,
   };
+  
   return (
     <>
       <div className="ukraine">
@@ -64,14 +64,23 @@ export default function Carousel() {
                   src={idLocation.image}
                   alt="Card image cap"
                 />
-                {/* detail-location theo id => id của location => thì lấy từ đâu? */}
                 <div className="card-body">
-                  <Link to="/detail-location/" sx={{
-                    color: "rgb(255, 56, 92)",
-                    textDecoration: "auto"
-                  }} className="card-title">{idLocation.name}</Link>
+                  <Link
+                    to={`/detail-location/${idLocation._id}`}
+                    sx={{
+                      color: "rgb(255, 56, 92)",
+                      textDecoration: "auto",
+                      cursor: "pointer"
+                    }}
+                    className="card-title"
+                  >
+                    {idLocation.name}
+                  </Link>
                   <p className="card-text">
                     {idLocation.province}-{idLocation.country}
+                  </p>
+                  <p className="card-text">
+                    Valueate: {idLocation.valueate}
                   </p>
                 </div>
               </div>
@@ -80,9 +89,9 @@ export default function Carousel() {
         </div>
       </div>
 
-{/* backToTop */}
+      {/* backToTop */}
       <div>
-        <BackToTop/>
+        <BackToTop />
       </div>
     </>
   );
