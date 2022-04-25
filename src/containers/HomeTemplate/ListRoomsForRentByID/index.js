@@ -51,9 +51,9 @@ export default function ListRoomsForRentByID() {
     setExpanded(!expanded);
   };
   const renderListRoomsForRentByID = () => {
-    return listRooms?.map((rooms) => {
+    return listRooms?.map((rooms, index) => {
       return (
-        <Grid item xs={12} sm={6} md={4} key={rooms._id}>
+        <Grid item xs={12} sm={6} md={4} key={index}>
           <Card sx={{ maxWidth: 345 }}>
             <CardHeader
               avatar={

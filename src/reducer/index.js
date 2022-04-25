@@ -8,6 +8,7 @@ import fetchListLocationReducer from "containers/HomeTemplate/SearchLocation/mod
 import fetchDetailLocationReducer from "containers/HomeTemplate/DetailLocation/modules/reducer";
 import fetchListRoomsForRentByIDReducer from "containers/HomeTemplate/ListRoomsForRentByID/modules/reducer";
 import fetchDetailRoomsForRentReducer from "containers/HomeTemplate/DetailRoom/modules/reducer";
+import editEvaluateReducer from "containers/AdminTemplate/EditEvaluate/modules/reducer";
 
 const rootReducer = combineReducers({
     signinAdminReducer,
@@ -19,6 +20,6 @@ const rootReducer = combineReducers({
     fetchDetailLocationReducer,
     fetchListRoomsForRentByIDReducer,
     fetchDetailRoomsForRentReducer,
-    
+    editEvaluateReducer,
 });
 export default rootReducer;

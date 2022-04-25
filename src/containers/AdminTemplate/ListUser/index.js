@@ -65,9 +65,9 @@ export default function ListUser() {
   
   
   const renderListUser = () => {
-    return listUser?.map((user) => {
+    return listUser?.map((user, index) => {
       return (
-        <tr key={user.id}>
+        <tr key={index}>
           <th>{user.name}</th>
           <th>{user.email}</th>
           <th className="d-none d-md-table-cell">{user.phone}</th>

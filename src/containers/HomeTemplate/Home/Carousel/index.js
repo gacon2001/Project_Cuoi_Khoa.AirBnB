@@ -21,7 +21,7 @@ export default function Carousel() {
     slidesToScroll: 1,
     infinite: false,
   };
-  
+
   return (
     <>
       <div className="ukraine">
@@ -43,6 +43,7 @@ export default function Carousel() {
         <hr />
       </div>
 
+      {/* slick */}
       <div className="inspiration">
         <div className="container">
           <div className="inspiration-container">
@@ -71,7 +72,7 @@ export default function Carousel() {
                     sx={{
                       color: "rgb(255, 56, 92)",
                       textDecoration: "auto",
-                      cursor: "pointer"
+                      cursor: "pointer",
                     }}
                     className="card-title"
                   >
@@ -80,9 +81,7 @@ export default function Carousel() {
                   <p className="card-text">
                     {idLocation.province}-{idLocation.country}
                   </p>
-                  <p className="card-text">
-                    Valueate: {idLocation.valueate}
-                  </p>
+                  <p className="card-text">Valueate: {idLocation.valueate}</p>
                 </div>
               </div>
             ))}

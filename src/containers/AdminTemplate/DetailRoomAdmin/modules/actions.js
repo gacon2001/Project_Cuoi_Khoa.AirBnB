@@ -6,9 +6,11 @@ import * as ActionType from "./constants";
 export const actUploadImageRoomApi = (_idRoom, room) => {
   return (dispatch) => {
     dispatch(actUploadImageRoomRequest());
+    var formData = new FormData();
+    formData.append("room", room);//(name: key postman, value: tham số mà mình nhận gtri truyền vô)
     api
     //22
-      .post(`rooms/upload-image/${_idRoom}`, room)
+      .post(`rooms/upload-image/${_idRoom}`, formData)
       .then((success) => {
         dispatch(actUploadImageRoomSuccess(success.data));
       })

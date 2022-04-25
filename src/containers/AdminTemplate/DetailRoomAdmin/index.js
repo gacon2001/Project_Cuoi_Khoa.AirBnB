@@ -79,10 +79,10 @@ export default function DetailRoomAdmin() {
   }, []);
 
   const renderListEvaluate = () => {
-    return listEvaluate?.map((list) => {
+    return listEvaluate?.map((list, index) => {
       return (
         <div className="evaluate-button">
-          <div className="list-evaluate" key={list._id}>
+          <div className="list-evaluate" key={index}>
             {/* nếu có avatar thì hiện avatar -> ko thì hiện hình ảnh mặc định này??? */}
             <img
               src={
@@ -132,7 +132,7 @@ export default function DetailRoomAdmin() {
       <img
         src={detailRoom?.image}
         style={{ width: "100%", cursor: "pointer" }}
-        type="file"
+        type="filename"
         onClick={handleOnChangeImageRoom}
         value={imgRoom.room}
         name="room"

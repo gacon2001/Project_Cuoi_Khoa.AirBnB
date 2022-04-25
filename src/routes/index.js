@@ -78,6 +78,11 @@ const routesAdmin = [
     path: "/add-evaluate/:_id",
     component: lazy(() => import("containers/AdminTemplate/AddEvaluate")),
   },
+  {
+    exact: false,
+    path: "/edit-evaluate/:_id",
+    component: lazy(() => import("containers/AdminTemplate/EditEvaluate")),
+  },
 ];
 const renderRoutesAdmin = () => {
   return routesAdmin.map((route, index) => {

@@ -11,10 +11,10 @@ export const actUploadAvatarApi = (avatar) => {
       .post("users/upload-avatar", formData)
       .then((success) => {
         const admin = JSON.parse(localStorage.getItem("Admin"));
-        admin.user.avatar = success.data.avatar;
+        // admin.user.avatar = success.data.avatar; => Fiverr : đăng nhập vào thì . tới user r . tới avatar => lấy đc avatar của admin đăng nhập vào
+        admin.user.avatar = success.data.avatar;//đăng nhập vào . user -> nhưng user ko có avatar
         localStorage.setItem("Admin", JSON.stringify(admin));
         window.location.reload();
-        console.log(localStorage.getItem("Admin"));
         dispatch(actUploadAvatarSuccess(success.data));
       })
       .catch((error) => {
