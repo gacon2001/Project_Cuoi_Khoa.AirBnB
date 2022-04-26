@@ -106,21 +106,19 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           p: 2,
         }}
       >
-        {user && avatar.avatar && (
-          <Avatar
-            // src={user.avatar}
-            src={avatar.avatar}
-            sx={{
-              cursor: "pointer",
-              width: 64,
-              height: 64,
-            }}
-            onClick={() => {
-              imgref.current?.click();
-            }}
-          ></Avatar>
-        )}
-        {/* bỏ hidden, upload đc img nhưng logout bị mất */}
+        
+        <Avatar
+          src={avatar.avatar}
+          sx={{
+            cursor: "pointer",
+            width: 64,
+            height: 64,
+          }}
+          onClick={() => {
+            imgref.current?.click();
+          }}
+        ></Avatar>
+        
         <input ref={imgref} type="file" hidden onChange={handleOnChange} />
 
         <Typography color="textPrimary" variant="h5">

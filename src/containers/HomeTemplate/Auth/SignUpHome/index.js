@@ -1,13 +1,11 @@
-import React, { Fragment,useState } from 'react';
+import React, { Fragment, useState } from "react";
 import { actSignUp } from "./modules/action";
 import { useDispatch } from "react-redux";
-import '../_auth.scss';
+import "../_auth.scss";
 
 const checkEmpty = (value) => {
   let error;
-  //skill: [] -> nên phải check length
   if (!value || value.length === 0) {
-    // console.log("password in here");
     error = "Không được để trống";
   } else if (typeof value === "string" && value.trim() != "") {
     error = "";
@@ -89,10 +87,16 @@ export default function SignUpHome(props) {
     dispatch(actSignUp(state));
   };
 
+  const validateName = () => {
+    const nameErrors = checkEmpty(state.name) || checkName(state.name);
+    // if (lanDau) return "";
+    return nameErrors;
+  };
+
   return (
     <Fragment>
       <div
-        className="modal fade"
+        className="modal fade signup"
         id={props.id}
         tabIndex="-1"
         aria-labelledby="signUpLabel"
@@ -114,11 +118,9 @@ export default function SignUpHome(props) {
                     name="name"
                     onChange={handleOnChange}
                   />
-                  <span>{(value)=> {
-                    const errors= {};
-                    const nameErrors = checkEmpty(value.name) || checkName(value.name);
-                    if (nameErrors.length > 0) errors.name = nameErrors;
-                  }}</span>
+                  <span>
+                    {validateName()}
+                  </span>
                 </div>
                 <div className="form-group">
                   <label>Email</label>
@@ -199,9 +201,7 @@ export default function SignUpHome(props) {
                   />
                 </div>
                 <div className="form-group text-center">
-                  <button type="submit" >
-                   Sign up
-                  </button>
+                  <button type="submit">Sign up</button>
                 </div>
               </form>
             </div>

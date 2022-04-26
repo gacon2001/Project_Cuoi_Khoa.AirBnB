@@ -10,7 +10,6 @@ const fetchListLocationReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.FETCH_LIST_LOCATION_REQUEST: {
       state.loading = true;
-      state.listLocation = null;
       state.error = null;
       return { ...state };
     }

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import "./_carousel.scss";
-import { Link } from "@mui/material";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import BackToTop from "../BackToTop";
+import NavbarHome from "../NavbarHome";
+import SearchLocation from "containers/HomeTemplate/SearchLocation";
 
 export default function Carousel() {
   const listLocation = useSelector(
@@ -24,6 +26,9 @@ export default function Carousel() {
 
   return (
     <>
+    <div className="position">
+      <NavbarHome />
+      <SearchLocation />
       <div className="ukraine">
         <div className="container">
           <div className="ukraine-content">
@@ -42,6 +47,8 @@ export default function Carousel() {
         </div>
         <hr />
       </div>
+    </div>
+      
 
       {/* slick */}
       <div className="inspiration">
@@ -62,7 +69,7 @@ export default function Carousel() {
             {listLocation?.map((idLocation, index) => (
               <div className="card" key={index}>
                 <img
-                  classname="card-img-top"
+                  className="card-img-top"
                   src={idLocation.image}
                   alt="Card image cap"
                 />

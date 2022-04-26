@@ -1,18 +1,16 @@
 import * as ActionType from "./constants";
-import api from "utils/api";
+import {api2} from "utils/api";
+
 export const actSignInApi = (user) => {
   return (dispatch) => {
     dispatch(actSignInRequest());
-    api
+    api2
       .post("auth/login", user)
       .then((success) => {
-        //!check chỉ CLIENT mới signin đc ???
-        // if (success.data.user.type !== "CLIENT"){
-        //   return Promise.reject({
-        //     data: "ONLY FOR USERS TO ACCESS"
-        //   })
-        // }
-        localStorage.setItem("Admin", JSON.stringify(success.data));
+        if (success.data.user.type !== "CLIENT"){
+          alert("ONLY FOR USERS TO ACCESS");
+        }
+        localStorage.setItem("User", JSON.stringify(success.data));
         dispatch(actSigninSuccess(success.data));
         alert("Đăng nhập thành công");
         // Close Modal

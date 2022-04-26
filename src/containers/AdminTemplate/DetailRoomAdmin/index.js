@@ -64,14 +64,6 @@ export default function DetailRoomAdmin() {
     });
   };
 
-  // const [evaluate, setEvaluate] = useState({
-  //   content: "",
-  //   userId: {
-  //     name: "",
-  //     avatar: "",
-  //   },
-  // });
-
   useEffect(() => {
     dispatch(actFetchDetailRoomApi(_id));
     dispatch(actFetchListEvaluateApi(_id));
@@ -83,13 +75,11 @@ export default function DetailRoomAdmin() {
       return (
         <div className="evaluate-button">
           <div className="list-evaluate" key={index}>
-            {/* nếu có avatar thì hiện avatar -> ko thì hiện hình ảnh mặc định này??? */}
             <img
               src={
-                list.userId?.avatar == list.userId?.avatar ? (
-                  list.userId?.avatar
-                ) : (
-                  <img src="https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg" />
+                // ?? : check có hình thì lấy luôn
+                list.userId?.avatar ?? (
+                  "https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg" 
                 )
               }
             />
@@ -101,7 +91,7 @@ export default function DetailRoomAdmin() {
           <div>
             <BorderColorOutlinedIcon
               className="button button-edit"
-              onClick={() => history.push(`edit-evaluate/${list._id}`)}
+              onClick={() => history.push(`/edit-evaluate/${list._id}`)}
             />
             <DeleteSweepOutlinedIcon
               className="button-delete"
@@ -132,11 +122,11 @@ export default function DetailRoomAdmin() {
       <img
         src={detailRoom?.image}
         style={{ width: "100%", cursor: "pointer" }}
-        type="filename"
+      />
+      <input type="file"
         onClick={handleOnChangeImageRoom}
         value={imgRoom.room}
-        name="room"
-      />
+        name="room"/>
       <hr />
 
       <div className="container infor-room">

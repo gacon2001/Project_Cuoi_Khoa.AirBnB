@@ -1,5 +1,6 @@
 
-import api from "utils/api";
+import { locale } from "moment";
+import { api } from "utils/api";
 import * as ActionType from "./constants";
 
 export const actAddEvaluateApi = (_idRoom, evaluate, history ) => {

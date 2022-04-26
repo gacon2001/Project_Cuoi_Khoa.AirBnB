@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {FaArrowCircleUp} from 'react-icons/fa';
 import { Button } from './stylesBackToTop';
 
 export default function BackToTop() {
     const [visible, setVisible] = useState(false)
-  
+
     const toggleVisible = () => {
       const scrolled = document.documentElement.scrollTop;
       if (scrolled > 300){
@@ -24,7 +24,10 @@ export default function BackToTop() {
       });
     };
     
-    window.addEventListener('scroll', toggleVisible);
+    useEffect(() => {
+      window.addEventListener('scroll', toggleVisible);
+      return () => window.removeEventListener('scroll', toggleVisible);
+    }, [])
 
     return (
         <Button>

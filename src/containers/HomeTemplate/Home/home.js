@@ -9,8 +9,8 @@ import './_home.scss'
 export default function Home() {
   return (
     <>
-        <NavbarHome/>
-        <SearchLocation/>
+        {/* <NavbarHome/> */}
+        {/* <SearchLocation/> */}
         <Carousel/>
         <Footer/>
     </>

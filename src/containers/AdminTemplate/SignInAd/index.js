@@ -140,11 +140,11 @@ export default function SignInAd() {
                 Don't have an account?
                 <Link
                   // component={RouterLink}
-                  to="/signup-home"
+                  to="/"
                   variant="h6"
                   underline="hover"
                 >
-                  Signup Home
+                  Home
                 </Link>
               </Typography>
             </Box>

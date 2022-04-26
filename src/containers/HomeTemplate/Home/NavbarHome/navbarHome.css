@@ -1,14 +1,17 @@
-.homenav{
+.navHome{
+    color: white;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+}
+.navHome .top-navlink{
     color: white;
 }
-.homenav .top-navlink{
-    color: white;
-}
-.homenav .nav-pills .nav-link.active{
+.navHome .nav-pills .nav-link.active{
     background-color: transparent;
     position: relative;
 }
-.homenav .nav-pills .nav-link.active::after{
+.navHome .nav-pills .nav-link.active::after{
     position: absolute;
     content: "";
     width: 50%;
@@ -17,33 +20,33 @@
     left: 2rem;
     bottom: 0;
 }
-.homenav .nav-content{
+.navHome .nav-content{
     background-color: white;
     color: black;
     border-radius: 2rem;
 }
-.homenav .bottom-navlink{
+.navHome .bottom-navlink{
     color: black;
     padding: 0;
     padding-top: 0.3rem;
     font-weight: bold;
 }
-.homenav .nav-flex{
+.navHome .nav-flex{
     display: flex;
     justify-content: space-around;
 }
-.homenav .nav-flex2{
+.navHome .nav-flex2{
     display: flex;
     justify-content: space-evenly;
 }
-.homenav .nav-pills .show>.my-nav{
+.navHome .nav-pills .show>.my-nav{
     background-color: transparent !important;
     color: black !important;
 }
 .reponsive-1200px{
     display: none;
 }
-.homenav .col-sm-10, .col-sm-2{
+.navHome .col-sm-10, .col-sm-2{
     padding: 0 !important;
 }
 

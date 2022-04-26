@@ -19,6 +19,6 @@ export default function AdminTemplate({ exact, path, component }) {
       </>
     );
   }
-  // return <Redirect to="/signin-admin"/>
-  return <Route exact={false} path={"/signin-admin"} component={SignInAd} />
+  return <Redirect to="/signin-admin"/>
 }
+

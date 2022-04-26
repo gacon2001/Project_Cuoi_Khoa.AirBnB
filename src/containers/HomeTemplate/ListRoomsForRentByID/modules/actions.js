@@ -1,5 +1,5 @@
 
-import api from "utils/api";
+import { api } from "utils/api";
 import * as ActionType from "./constants";
 
 export const actFetchListRoomsForRentByIDApi = (_id) => {

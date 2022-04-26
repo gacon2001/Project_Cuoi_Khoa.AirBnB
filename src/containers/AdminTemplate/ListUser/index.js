@@ -55,6 +55,7 @@ export default function ListUser() {
   })
   useEffect(() => {
     if (detailUser !== null) {
+
       const birthdayNew = moment(detailUser.birthday).format("DD-MM-yyyy");
       setBirthday({
         ...detailUser,

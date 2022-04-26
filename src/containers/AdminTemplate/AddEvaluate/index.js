@@ -41,30 +41,11 @@ export default function AddEvaluate() {
           type="text"
           variant="outlined"
         />
-        {/* <TextField
-        fullWidth
-        label="Name"
-        margin="normal"
-        name="name"
-        value={state.name}
-        onChange={handleOnChange}
-        type="text"
-        variant="outlined"
-      />
-      <TextField
-        fullWidth
-        // label="Avatar"
-        margin="normal"
-        name="avatar"
-        value={state.avatar}
-        onChange={handleOnChange}
-        type="file"
-        variant="outlined"
-      /> */}
         <Button
           color="primary"
           variant="contained"
           sx={{ textAlign: "center" }}
+type="submit"
         >
           Add Evaluate
         </Button>

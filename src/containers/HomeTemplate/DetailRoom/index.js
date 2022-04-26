@@ -46,14 +46,6 @@ export default function DetailRoom() {
     });
   };
 
-  // const [evaluate, setEvaluate] = useState({
-  //   content: "",
-  //   userId: {
-  //     name: "",
-  //     avatar: "",
-  //   },
-  // });
-
   useEffect(() => {
     dispatch(actFetchDetailRoomApi(_id));
     dispatch(actFetchListEvaluateApi(_id));
@@ -62,9 +54,8 @@ export default function DetailRoom() {
   const renderListEvaluate = () => {
     return listEvaluate?.map((list) => {
       return (
-        <div className="evaluate" key={list._id}>
-          {/* nếu có avatar thì hiện avatar -> ko thì hiện hình ảnh mặc định này??? */}
-          <img src={list.userId?.avatar == list.userId?.avatar ? list.userId?.avatar : "https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg"} />
+        <div className="list-evaluate" key={list._id}>
+          <img src={list.userId?.avatar ?? ("https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg")} />
           <div>
             <p>{list.userId?.name}</p>
             <p>{list.content}</p>
