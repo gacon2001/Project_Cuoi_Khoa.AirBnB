@@ -1,0 +1,2 @@
+upload img -> body là form-data => actions.js phải chuyển về formData.
+

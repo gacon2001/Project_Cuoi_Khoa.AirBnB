@@ -4,7 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { actEditLocationApi } from "./modules/actions";
 import { actFetchDetailLocationApi } from "containers/HomeTemplate/DetailLocation/modules/actions";
+import { actUploadImageLocationApi } from "../DetailRoomAdmin/modules/actions";
 import { useHistory } from "react-router-dom";
+
+const imgStyle ={
+  width: "100%",
+  height: "100%",
+  objectFit: "cover"
+}
 
 export default function EditLocation() {
   const dispatch = useDispatch();
@@ -13,13 +20,13 @@ export default function EditLocation() {
   const detailLocation = useSelector((state) => {
     return state.fetchDetailLocationReducer.detailLocation;
   }); 
+
   const [state, setState] = useState({
     name: "",
     province: "",
     country: "",
     valueate : "",
   });
-
   useEffect(() => {
     if (detailLocation !== null) {
       setState({
@@ -27,7 +34,6 @@ export default function EditLocation() {
       }); 
     }
   }, [detailLocation]);
-
   const handleOnChange = (event) => {
     const { name, value } = event.target;
     setState({
@@ -35,15 +41,29 @@ export default function EditLocation() {
       [name]: value,
     });
   };
-
   const updateLocation = (event) => {
     event.preventDefault();
     dispatch(actEditLocationApi(_id, state, history));
   };
-
   useEffect(() => {
     dispatch(actFetchDetailLocationApi(_id));
   }, []);
+
+  //!upload img for location
+  const [imgLocation, setImgLocation] = useState({
+    location: "",
+  });
+  useEffect(()=>{
+    //img ban đầu
+    setImgLocation(detailLocation?.image ?? "")
+  }, [detailLocation]);
+  const handleChangeImageLocation = (e) => {
+    if (e.target.files.length > 0) {
+      const img = e.target.files[0];//lấy img từ input
+      setImgLocation(window.URL.createObjectURL(img));//set lại src
+      dispatch(actUploadImageLocationApi(_id, img));//dispatch về BE
+    }
+  };
   return (
     <Container maxWidth="sm" sx={{mt: 10}}>
       <form onSubmit={updateLocation}>
@@ -89,6 +109,10 @@ export default function EditLocation() {
             type="number"
             value={state.valueate}
           />
+         <div>
+          <img style={imgStyle} src={imgLocation} />
+          <input type="file" onChange={handleChangeImageLocation} />
+        </div>
           <Button fullWidth type="submit" color="primary" variant="contained" sx={{mt: 2}}>
             Update Location
           </Button>

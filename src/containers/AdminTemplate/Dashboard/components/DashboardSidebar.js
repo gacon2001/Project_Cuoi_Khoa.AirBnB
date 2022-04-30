@@ -63,14 +63,8 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
   const imgref = useRef(null);
   const dispatch = useDispatch();
 
-
-  // todo: cụm user chi tiết ng dùng ko có avatar??? -> chia ra 2 useState
-  // const [user, setUser] = useState({
-  //   name: "",
-  //   avatar: "",
-  // });
-  const [user, setUser] = useState({ name:""})
-  const [avatar, setAvatar] = useState({
+  const [user, setUser] = useState({
+    name: "",
     avatar: "",
   });
 
@@ -108,7 +102,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
       >
         
         <Avatar
-          src={avatar.avatar}
+          src={user.avatar}
           sx={{
             cursor: "pointer",
             width: 64,
@@ -122,7 +116,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
         <input ref={imgref} type="file" hidden onChange={handleOnChange} />
 
         <Typography color="textPrimary" variant="h5">
-          {user && <Link to={`/detail-admin-signin/${user._id}`}>{user.name}</Link>}
+          <Link to={`/detail-admin-signin/${user._id}`}>{user.name}</Link>
         </Typography>
       </Box>
       <Divider />

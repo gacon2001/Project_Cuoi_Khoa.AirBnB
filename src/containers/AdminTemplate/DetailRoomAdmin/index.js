@@ -7,7 +7,6 @@ import {
   actFetchListEvaluateApi,
 } from "containers/HomeTemplate/DetailRoom/modules/actions";
 import {
-  actUploadImageLocationApi,
   actUploadImageRoomApi,
 } from "./modules/actions";
 import { useParams } from "react-router-dom";
@@ -38,7 +37,6 @@ export default function DetailRoomAdmin() {
   const detailRoom = useSelector(
     (state) => state.fetchDetailRoomsForRentReducer.detailRoom
   );
-
   const listEvaluate = useSelector(
     (state) => state.fetchDetailRoomsForRentReducer.listEvaluate
   );
@@ -55,7 +53,7 @@ export default function DetailRoomAdmin() {
     //
   }, [detailRoom]);
   const handleOnChangeImageRoom = (event) => {
-    // khi nguoiừ dùng thay đổi hình ảnh
+    // khi người dùng thay đổi hình ảnh
     if (event.target.files.length > 0) {
       const img = event.target.files[0]; // lấy hình ảnh ra từ input
       setImgRoom(window.URL.createObjectURL(img)); // set lại src của ảnh
@@ -63,21 +61,6 @@ export default function DetailRoomAdmin() {
       dispatch(actUploadImageRoomApi(_id, img)); // dispatch action lên để gửi ảnh về backend,mình xử lý v á :V
     }
   };
-
-  //!upload img for location
-  const [imgLocation, setImgLocation] = useState({
-    location: "",
-  });
-  useEffect(()=>{
-    setImgLocation(detailRoom?.locationId.image ?? "")
-  }, [detailRoom]);
-  const handleChangeImageLocation = (e) => {
-    if (e.target.files.length > 0) {
-      setImgLocation(window.URL.createObjectURL(e.target.files[0]));
-      dispatch(actUploadImageLocationApi(_id, imgLocation));
-    }
-  };
-
   const [booking, setBooking] = useState({
     checkIn: "",
     checkOut: "",
@@ -145,7 +128,6 @@ export default function DetailRoomAdmin() {
       {/* upload image room???? */}
       <div>
         <img
-          //
           // src={detailRoom?.image}
           src={imgRoom}
           style={{ width: "100%", cursor: "pointer" }}
@@ -342,8 +324,7 @@ export default function DetailRoomAdmin() {
           {detailRoom?.locationId.country}
         </span>
         <div>
-          <img src={imgLocation} />
-          <input type="file" onChange={handleChangeImageLocation} />
+          <img src={detailRoom?.locationId.image} />
         </div>
       </div>
     </Container>

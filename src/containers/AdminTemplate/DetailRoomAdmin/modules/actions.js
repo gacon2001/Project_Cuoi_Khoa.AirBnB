@@ -1,15 +1,13 @@
-
 import { api } from "utils/api";
 import * as ActionType from "./constants";
-
 
 export const actUploadImageRoomApi = (_idRoom, room) => {
   return (dispatch) => {
     dispatch(actUploadImageRoomRequest());
     var formData = new FormData();
-    formData.append("room", room);//(name: key postman, value: tham số mà mình nhận gtri truyền vô)
+    formData.append("room", room); //(name: key postman, value: tham số mà mình nhận gtri truyền vô)
     api
-    //22
+      //22
       .post(`rooms/upload-image/${_idRoom}`, formData)
       .then((success) => {
         dispatch(actUploadImageRoomSuccess(success.data));
@@ -39,33 +37,34 @@ const actUploadImageRoomFailed = (error) => {
 
 export const actUploadImageLocationApi = (_id, location) => {
   return (dispatch) => {
-      dispatch(actUploadImageLocationRequest());
-      api
+    dispatch(actUploadImageLocationRequest());
+    var formData = new FormData();
+    formData.append("location", location);
+    api
       //12
-      .put(`locations/upload-images/${_id}`, location) 
-      .then((success)=>{
-          dispatch(actUploadImageLocationSuccess(success.data));
+      .post(`locations/upload-images/${_id}`, formData)
+      .then((success) => {
+        dispatch(actUploadImageLocationSuccess(success.data));
       })
-      .catch((error)=>{
-          dispatch(actUploadImageLocationFailed(error));
-      })
-  }
-} 
-const actUploadImageLocationRequest = ()=>{
+      .catch((error) => {
+        dispatch(actUploadImageLocationFailed(error));
+      });
+  };
+};
+const actUploadImageLocationRequest = () => {
   return {
-      type: ActionType.UPLOAD_IMAGE_LOCATION_REQUEST
-  }
-}
+    type: ActionType.UPLOAD_IMAGE_LOCATION_REQUEST,
+  };
+};
 const actUploadImageLocationSuccess = (data) => {
-return {
-  type: ActionType.UPLOAD_IMAGE_LOCATION_SUCCESS,
-  payload: data,
-}
-}
+  return {
+    type: ActionType.UPLOAD_IMAGE_LOCATION_SUCCESS,
+    payload: data,
+  };
+};
 const actUploadImageLocationFailed = (error) => {
-  return{
-      type: ActionType.UPLOAD_IMAGE_LOCATION_FAILED,
-      payload: error,
-  }
-}
-
+  return {
+    type: ActionType.UPLOAD_IMAGE_LOCATION_FAILED,
+    payload: error,
+  };
+};
