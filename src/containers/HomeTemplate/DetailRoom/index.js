@@ -17,7 +17,7 @@ import DryOutlinedIcon from "@mui/icons-material/DryOutlined";
 import RouterOutlinedIcon from "@mui/icons-material/RouterOutlined";
 import SoupKitchenOutlinedIcon from "@mui/icons-material/SoupKitchenOutlined";
 import FitnessCenterOutlinedIcon from "@mui/icons-material/FitnessCenterOutlined";
-import { Button, TextField, Box } from "@mui/material";
+import { Button, TextField, Box, Container } from "@mui/material";
 import { Typography } from "@mui/material";
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
@@ -66,7 +66,7 @@ export default function DetailRoom() {
   };
 
   return (
-    <div className="container">
+    <Container maxWidth="md">
       <h1>{detailRoom?.name}</h1>
       <div className="name">
         {/* listEvaluate là [] => .length là có thể count đc số evaluate  */}
@@ -262,6 +262,6 @@ export default function DetailRoom() {
           </span>
         <img src={detailRoom?.locationId.image}/>
       </div>
-    </div>
+    </Container>
   );
 }

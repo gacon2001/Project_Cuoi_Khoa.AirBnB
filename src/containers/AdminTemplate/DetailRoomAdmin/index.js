@@ -6,7 +6,10 @@ import {
   actBookingRoomApi,
   actFetchListEvaluateApi,
 } from "containers/HomeTemplate/DetailRoom/modules/actions";
-import { actUploadImageRoomApi } from "./modules/actions";
+import {
+  actUploadImageLocationApi,
+  actUploadImageRoomApi,
+} from "./modules/actions";
 import { useParams } from "react-router-dom";
 import "containers/HomeTemplate/DetailRoom/_detailRoom.scss";
 import CellWifiIcon from "@mui/icons-material/CellWifi";
@@ -19,7 +22,7 @@ import DryOutlinedIcon from "@mui/icons-material/DryOutlined";
 import RouterOutlinedIcon from "@mui/icons-material/RouterOutlined";
 import SoupKitchenOutlinedIcon from "@mui/icons-material/SoupKitchenOutlined";
 import FitnessCenterOutlinedIcon from "@mui/icons-material/FitnessCenterOutlined";
-import { Button, TextField, Box } from "@mui/material";
+import { Button, TextField, Box, Container } from "@mui/material";
 import { Typography } from "@mui/material";
 import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
 import DeleteSweepOutlinedIcon from "@mui/icons-material/DeleteSweepOutlined";
@@ -40,16 +43,39 @@ export default function DetailRoomAdmin() {
     (state) => state.fetchDetailRoomsForRentReducer.listEvaluate
   );
 
-  //!upload img cho room
+  //!upload img for room
   const [imgRoom, setImgRoom] = useState({
     room: "",
   });
+  useEffect(() => {
+    setImgRoom(detailRoom?.image ?? "");
+    // Chỗ này là mình lấyy img mặc định thôi
+    // ý là hàm này nè, mình lấy img từ api trả về để show lên UI vào lần đầu thôi á
+    // còn dispatch thì nên dispatch ở chỗ khác.
+    //
+  }, [detailRoom]);
   const handleOnChangeImageRoom = (event) => {
-    const { name, value } = event.target;
-    setImgRoom({
-      ...imgRoom,
-      [name]: value,
-    });
+    // khi nguoiừ dùng thay đổi hình ảnh
+    if (event.target.files.length > 0) {
+      const img = event.target.files[0]; // lấy hình ảnh ra từ input
+      setImgRoom(window.URL.createObjectURL(img)); // set lại src của ảnh
+      //mỗi lần mình chọn ảnh thì src của ảnh thay đổi => phải thay đổi state để react cập nhật lại hình mới
+      dispatch(actUploadImageRoomApi(_id, img)); // dispatch action lên để gửi ảnh về backend,mình xử lý v á :V
+    }
+  };
+
+  //!upload img for location
+  const [imgLocation, setImgLocation] = useState({
+    location: "",
+  });
+  useEffect(()=>{
+    setImgLocation(detailRoom?.locationId.image ?? "")
+  }, [detailRoom]);
+  const handleChangeImageLocation = (e) => {
+    if (e.target.files.length > 0) {
+      setImgLocation(window.URL.createObjectURL(e.target.files[0]));
+      dispatch(actUploadImageLocationApi(_id, imgLocation));
+    }
   };
 
   const [booking, setBooking] = useState({
@@ -67,7 +93,6 @@ export default function DetailRoomAdmin() {
   useEffect(() => {
     dispatch(actFetchDetailRoomApi(_id));
     dispatch(actFetchListEvaluateApi(_id));
-    dispatch(actUploadImageRoomApi(_id, imgRoom));
   }, []);
 
   const renderListEvaluate = () => {
@@ -78,9 +103,8 @@ export default function DetailRoomAdmin() {
             <img
               src={
                 // ?? : check có hình thì lấy luôn
-                list.userId?.avatar ?? (
-                  "https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg" 
-                )
+                list.userId?.avatar ??
+                "https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg"
               }
             />
             <div>
@@ -104,7 +128,7 @@ export default function DetailRoomAdmin() {
   };
 
   return (
-    <div className="container" style={{ marginTop: 70 }}>
+    <Container maxWidth="md" sx={{ mt: 10 }}>
       <h1>{detailRoom?.name}</h1>
       <div className="name">
         <p>
@@ -119,14 +143,17 @@ export default function DetailRoomAdmin() {
       </div>
 
       {/* upload image room???? */}
-      <img
-        src={detailRoom?.image}
-        style={{ width: "100%", cursor: "pointer" }}
-      />
-      <input type="file"
-        onClick={handleOnChangeImageRoom}
-        value={imgRoom.room}
-        name="room"/>
+      <div>
+        <img
+          //
+          // src={detailRoom?.image}
+          src={imgRoom}
+          style={{ width: "100%", cursor: "pointer" }}
+        />
+        {/* set Img */}
+        <input onChange={handleOnChangeImageRoom} type="file" />
+      </div>
+
       <hr />
 
       <div className="container infor-room">
@@ -314,8 +341,11 @@ export default function DetailRoomAdmin() {
           {detailRoom?.locationId.name},{detailRoom?.locationId.province},
           {detailRoom?.locationId.country}
         </span>
-        <img src={detailRoom?.locationId.image} />
+        <div>
+          <img src={imgLocation} />
+          <input type="file" onChange={handleChangeImageLocation} />
+        </div>
       </div>
-    </div>
+    </Container>
   );
 }

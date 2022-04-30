@@ -55,7 +55,6 @@ export default function ListUser() {
   })
   useEffect(() => {
     if (detailUser !== null) {
-
       const birthdayNew = moment(detailUser.birthday).format("DD-MM-yyyy");
       setBirthday({
         ...detailUser,
@@ -72,7 +71,7 @@ export default function ListUser() {
           <th>{user.name}</th>
           <th>{user.email}</th>
           <th className="d-none d-md-table-cell">{user.phone}</th>
-          <th className="d-none d-md-table-cell">{user.birthday}</th>
+          <th className="d-none d-md-table-cell">{moment(user.birthday).format("DD-MM-yyyy")}</th>
           <th className="d-none d-md-table-cell">{user.gender ? "Men" : "Women"}</th>
           <th className="d-none d-md-table-cell">{user.address}</th>
           <th className="d-none d-md-table-cell">

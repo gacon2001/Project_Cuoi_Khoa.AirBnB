@@ -37,12 +37,12 @@ const actUploadImageRoomFailed = (error) => {
   };
 };
 
-export const actUploadImageLocationApi = (_id, imageLocation) => {
+export const actUploadImageLocationApi = (_id, location) => {
   return (dispatch) => {
       dispatch(actUploadImageLocationRequest());
       api
       //12
-      .put(`locations/upload-images/${_id}`, imageLocation) 
+      .put(`locations/upload-images/${_id}`, location) 
       .then((success)=>{
           dispatch(actUploadImageLocationSuccess(success.data));
       })
