@@ -92,6 +92,22 @@ export default function SignUpHome(props) {
     // if (lanDau) return "";
     return nameErrors;
   };
+  const validateEmail = () => {
+    const emailErrors = checkEmpty(state.email) || checkEmail(state.email);
+    return emailErrors;
+  }
+  const validatePassword = () => {
+    const passwordErrors = checkEmpty(state.password) || checkPassword(state.password);
+    return passwordErrors;
+  }
+  const validatePhone = () => {
+    const phoneErrors = checkEmpty(state.phone) || checkPhoneNumber(state.phone);
+    return phoneErrors;
+  }
+  const validateAddress = () => {
+    const addressErrors = checkEmpty(state.address);
+    return addressErrors;
+  }
 
   return (
     <Fragment>
@@ -129,6 +145,9 @@ export default function SignUpHome(props) {
                     name="email"
                     onChange={handleOnChange}
                   />
+                  <span>
+                    {validateEmail()}
+                  </span>
                 </div>
                 <div className="form-group">
                   <label>Password</label>
@@ -138,6 +157,9 @@ export default function SignUpHome(props) {
                     type="password"
                     onChange={handleOnChange}
                   />
+                  <span>
+                    {validatePassword()}
+                  </span>
                 </div>
                 <div className="form-group">
                   <label>Phone Number</label>
@@ -147,6 +169,9 @@ export default function SignUpHome(props) {
                     type="number"
                     onChange={handleOnChange}
                   />
+                  <span>
+                    {validatePhone()}
+                  </span>
                 </div>
                 <div className="form-group">
                   <label>Birthday</label>
@@ -199,6 +224,9 @@ export default function SignUpHome(props) {
                     type="text"
                     onChange={handleOnChange}
                   />
+                  <span>
+                    {validateAddress()}
+                  </span>
                 </div>
                 <div className="form-group text-center">
                   <button type="submit">Sign up</button>
